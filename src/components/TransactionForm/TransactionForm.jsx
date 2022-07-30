@@ -1,0 +1,31 @@
+const TransactionForm = () => {
+  return (
+    <form>
+      <label>
+        День
+        <input type="date" name="date" />
+      </label>
+
+      <label>
+        Час
+        <input type="time" name="time" />
+      </label>
+      <label>
+        Категорія
+        <input type="button" name="category" value="Їжа" />
+      </label>
+      <label>
+        Сумма
+        <input type="text" name="sum" placeholder="Введіть суму" />
+      </label>
+      <label>
+        Валюта
+        <input type="button" name="currency" value="UAH" />
+      </label>
+      <label>
+        <input type="text" name="coment" placeholder="Коментар" />
+      </label>
+    </form>
+  );
+};
+export default TransactionForm;
