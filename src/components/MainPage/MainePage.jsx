@@ -1,28 +1,27 @@
 import TransactionForm from '../TransactionForm/TransactionForm';
 import CategoriesList from '../CategoriesList/CategoriesList';
+import Header from '../Header/Header';
+import s from './MainePage.module.css';
+
 const MainPage = () => {
   const isCategoriesList = false;
+
   return (
     <>
-      <header>
-        <button type="button">
-     
-          {isCategoriesList ? 'Co back' : 'burger'}
-        </button>
-        <h1 className="title-page">
-          
-          {isCategoriesList ? 'Категорії' : 'Журнал витрат'}
-        </h1>
-      </header>
-
-      <main>
+      <Header
+        title={isCategoriesList ? ' Категорії ' : 'Журнал витрат'}
+        icon={isCategoriesList ? '#icon-arrow-left' : null}
+      />
+      <main className={s.main}>
         {isCategoriesList ? (
           <CategoriesList />
         ) : (
           <>
             <TransactionForm />
-            <button className="costs">Всі витрати</button>
-            <button className="incomes">Всі прибутки</button>
+            <div className={s.blockBtn}>
+              <button className={s.costs}>Всі витрати</button>
+              <button className={s.incomes}>Всі прибутки</button>
+            </div>
           </>
         )}
       </main>
