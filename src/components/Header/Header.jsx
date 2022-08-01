@@ -1,11 +1,11 @@
 import s from './Header.module.css';
 import sprite from '../../assets/sprite.svg';
 
-const Header = ({ title, icon }) => {
+const Header = ({ title, icon, cbOnClick }) => {
   return (
     <header className={s.header}>
       {icon && (
-        <button type="button" className={s.btn}>
+        <button onClick={cbOnClick} type="button" className={s.btn}>
           <svg width="15" height="15">
             <use href={sprite + icon} />
           </svg>
