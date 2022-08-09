@@ -1,81 +1,92 @@
-import { Component } from 'react';
 import s from './TransactionForm.module.css';
 
- class TransactionForm extends Component {
-state={
-  date: "2022-07-28",
-  time: "14:14",
-  category: "продукти",
-  summ: " ",
-  currency: "UAH",
-  comment: " "
+function TransactionForm({
+  form,
+  handleOpenCategoriesList,
+  handleChange,
+  addTransaction,
+  resetForm,
+}) {
+  const { date, time, category, summ, currency, comment, transType } = form;
+  return (
+    <form
+      className={s.form}
+      onSubmit={e => {
+        e.preventDefault();
+        addTransaction(form);
+        resetForm();
+      }}
+    >
+      <button type="submit">Відправити</button>
+      <select name="transType" value={transType} onChange={handleChange}>
+        <option value="costs">Витрати</option>
+        <option value="incomes">Прибуток</option>
+      </select>
+      <div className={s.div}>
+        <label className={s.day}>
+          День
+          <input
+            onChange={handleChange}
+            className={s.inputDay}
+            type="date"
+            name="date"
+            value={date}
+          />
+        </label>
+        <label className={s.time}>
+          Час
+          <input
+            className={s.inputTime}
+            onChange={handleChange}
+            type="time"
+            name="time"
+            value={time}
+          />
+        </label>
+      </div>
+      <label className={s.category}>
+        Категорія
+        <input
+          className={s.categoryInput}
+          onClick={handleOpenCategoriesList}
+          type="button"
+          name="category"
+          value={category}
+        />
+      </label>
+      <label className={s.summa}>
+        Сума
+        <input
+          className={s.summaInput}
+          onChange={handleChange}
+          type="text"
+          name="summ"
+          value={summ}
+          placeholder="Введіть суму"
+        />
+      </label>
+      <label className={s.valyta}>
+        Валюта
+        <input
+          className={s.valytaInput}
+          onChange={handleChange}
+          type="button"
+          name="currency"
+          value={currency}
+        />
+      </label>
+      <label className={s.comment}>
+        <input
+          className={s.commentInput}
+          onChange={handleChange}
+          type="text"
+          name="comment"
+          value={comment}
+          placeholder="Коментар"
+        />
+      </label>
+    </form>
+  );
 }
 
-
-handleChange = (e) => {
- 
-  const {name, value}= e.target;
-  this.setState({[name]:value });
-}
-
-  render(){
-    const {hendleOpenCategoriesList} = this.props;
-    const {date, time, category, summ, currency, comment} = this.state
-    return (
-      <form className={s.form}>
-        <div className={s.div}>
-          <label className={s.day}>
-            День
-            <input className={s.inputDay} type="date" name="date" value={date} onChange={this.handleChange}/>
-          </label>
-          <label className={s.time}>
-            Час
-            <input className={s.inputTime} type="time" name="time" value={time} onChange={this.handleChange}/>
-          </label>
-        </div>
-        <label className={s.category}>
-          Категорія
-          <input
-            className={s.categoryInput}
-            type="button"
-            name="category"
-            value={category}
-            onClick={hendleOpenCategoriesList}
-          />
-        </label>
-        <label className={s.summa}>
-          Сума
-          <input
-            className={s.summaInput}
-            type="text"
-            name="summ"
-            placeholder="Введіть суму"
-            value={summ}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label className={s.valyta}>
-          Валюта
-          <input
-            className={s.valytaInput}
-            type="button"
-            name="currency"
-            value={currency}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label className={s.comment}>
-          <input
-            className={s.commentInput}
-            type="text"
-            name="comment"
-            placeholder="Коментар"
-            value={comment}
-            onChange={this.handleChange}
-          />
-        </label>
-      </form>
-    );
-  }
-};
 export default TransactionForm;
